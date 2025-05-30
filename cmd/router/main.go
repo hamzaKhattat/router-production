@@ -5,6 +5,9 @@ import (
    "log"
    "os"
    
+   "strings"
+   "github.com/router-production/internal/models"
+   
    "github.com/spf13/cobra"
    "github.com/router-production/internal/api"
    "github.com/router-production/internal/database"
@@ -291,7 +294,4 @@ func statsCmd() *cobra.Command {
 }
 
 // Add missing imports
-import (
-   "strings"
-   "github.com/router-production/internal/models"
-)
+

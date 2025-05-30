@@ -38,6 +38,8 @@ func NewManager(db *database.DB) *Manager {
 func (m *Manager) AddProvider(p *models.Provider) error {
     m.mu.Lock()
     defer m.mu.Unlock()
+    fmt.Println(time.Now())
+    fmt.Println(sql.ErrNoRows)
     
     // Validate provider
     if p.Name == "" || p.Host == "" {

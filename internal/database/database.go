@@ -14,6 +14,7 @@ type DB struct {
 }
 
 func NewDB(dsn string) (*DB, error) {
+	log.Printf("hello world")
     db, err := sql.Open("mysql", dsn)
     if err != nil {
         return nil, err

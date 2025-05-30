@@ -3,6 +3,7 @@ package provider
 import (
     "fmt"
     "os"
+    "os/exec"  // Add this import
     "path/filepath"
     "strings"
     "text/template"
@@ -95,7 +96,9 @@ func (g *AsteriskConfigGenerator) GenerateProviderConfig(p *models.Provider) err
     g.updateMainConfigs(p.Name)
     
     // Reload Asterisk
-    g.reloadAsterisk()
+    if err := g.reloadAsterisk(); err != nil {
+        return fmt.Errorf("failed to reload asterisk: %w", err)
+    }
     
     return nil
 }
@@ -137,6 +140,8 @@ func (g *AsteriskConfigGenerator) addIncludeIfNotExists(filename, include string
     }
 }
 
-func (g *AsteriskConfigGenerator) reloadAsterisk() {
-    os.Exec("asterisk", []string{"-rx", "core reload"}, nil)
+// Fixed reloadAsterisk function
+func (g *AsteriskConfigGenerator) reloadAsterisk() error {
+    cmd := exec.Command("asterisk", "-rx", "core reload")
+    return cmd.Run()
 }

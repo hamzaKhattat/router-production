@@ -63,7 +63,7 @@ func (r *Router) ProcessIncomingCall(callID, ani, dnis string) (*models.CallResp
     // Get provider info for the DID
     var provider *models.Provider
     var providerID int
-    
+    fmt.Println(provider)
     row := r.db.QueryRow(`
         SELECT p.id, p.name FROM providers p
         JOIN dids d ON d.provider_id = p.id
