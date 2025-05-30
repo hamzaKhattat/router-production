@@ -1,0 +1,14 @@
+[Unit]
+Description=Production S2 Router
+After=network.target mysql.service asterisk.service
+
+[Service]
+Type=simple
+User=asterisk
+Group=asterisk
+ExecStart=/usr/local/bin/router server
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
